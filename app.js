@@ -27,16 +27,18 @@ let myLibrary = [bookOne.bookInfo(), bookTwo.bookInfo(), bookThree.bookInfo()];
 
 // Need to find way to make prompt in html to then create an object with info provided.
 
+function addBookToLibrary() {
+    return myLibrary.push();
+}
 
- let userInput = ["Thesis", "Rob Miller", 666, true]; 
+/*  let userInput = ["Thesis", "Rob Miller", 666, true]; 
  const userInputObject = new Book(userInput);
 
 function addBookToLibrary(userInput) {
     return myLibrary.push(userInput);
 }
-
 console.log(addBookToLibrary(userInput));
-console.log(myLibrary);
+console.log(myLibrary); */
 /* ev.preventDefault(); */ // to stop the form from submitting. -We'll use this later for step 3.
 
 
@@ -67,40 +69,20 @@ document.getElementById("new-book-btn").onclick = function() {
 document.getElementById("formElement").style.display = 'block';
 }
 
-/* The code below is extremely close to working. when pushed to myLibrary it is bringing back undefined*/
+//We now need this to return the book.Info for our object, not the new Book.
+document.addEventListener('submit', function(e) {
+    e.preventDefault()
+    const newBookForm = e.target
+    const newTitle = newBookForm.title.value
+    const newAuthor = newBookForm.author.value
+    const newPages = newBookForm.pages.value
+    const newRead = newBookForm.read.value
+        const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
 
-/* function submitNewBook() {
-    document.getElementById('formElement').submit();
-}
+     return console.log(myLibrary.push(newBookObj.bookInfo()));
+}) 
 
-console.log(submitNewBook()); */
-function submitForm () {
-
-const submitForm = document.getElementById('submitForm');
-submitForm.addEventListener('submit', (ev) => {
-
-    const form = document.getElementById('formElement').submit();
-    ev.preventDefault();
-})
-}
-
-function createNewObject () {
-    const userBook = new Book(
-        document.getElementById('new-title').title,
-        document.getElementById('new-author').author,
-        document.getElementById('new-pages').pages,
-        document.getElementById('new-read').read)
-
-        return userBook 
-    }
-function addBookToLibrary() {
-    return myLibrary.push(createNewObject());
-}
-
-
-console.log(createNewObject());
-console.log(addBookToLibrary());
-/* console.log(addBookToLibrary(userInput)); */
+console.log(myLibrary);
 
 /* What are we trying to do.
 1.) Collect four answers from user input from our form.
