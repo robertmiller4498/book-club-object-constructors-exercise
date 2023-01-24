@@ -55,14 +55,15 @@ for (let x in myLibrary) {
 
 //Oh hell ya
 const libraryContainer = document.getElementById('library-container');
-  
+
+function createNewBookContainer() {
   for(let i=0; i < myLibrary.length; i += 1){
     let singleBook = document.createElement('div');
     singleBook.classList.add('bookListDiv');
     singleBook.innerHTML = myLibrary[i];
     libraryContainer.appendChild(singleBook);
   }
-
+}
 
 
 document.getElementById("new-book-btn").onclick = function() {
@@ -79,7 +80,7 @@ document.addEventListener('submit', function(e) {
     const newRead = newBookForm.read.value
         const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
 
-     return console.log(myLibrary.push(newBookObj.bookInfo()));
+     return console.log(createNewBookContainer(myLibrary.push(newBookObj.bookInfo())));
 }) 
 
 console.log(myLibrary);
