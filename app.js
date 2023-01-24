@@ -31,7 +31,7 @@ function createNewBookContainer() {
   
     let singleBook = document.createElement('div');
     singleBook.classList.add('bookListDiv');
-    singleBook.innerHTML = myLibrary;
+    singleBook.innerHTML = myLibrary.at(-1);
     libraryContainer.appendChild(singleBook);
   
 }
@@ -54,7 +54,7 @@ document.addEventListener('submit', function(e) {
     const newPages = newBookForm.pages.value
     const newRead = newBookForm.read.value
         const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
-
+        
      return console.log(createNewBookContainer(addBookToLibrary(newBookObj.bookInfo())));
 }) 
 
