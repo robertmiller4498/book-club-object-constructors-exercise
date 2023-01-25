@@ -1,6 +1,3 @@
-
-
-
 function Book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -57,6 +54,9 @@ document.addEventListener('submit', function(e) {
     const newPages = newBookForm.pages.value
     const newRead = newBookForm.read.value
         const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
+    
+    const form = document.getElementById('formElement');
+    form.reset();
 
      return console.log(createNewBookContainer(addBookToLibrary(newBookObj.bookInfo())));
 }) 
