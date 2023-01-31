@@ -1,3 +1,4 @@
+//Constructor function
 function Book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -9,18 +10,16 @@ function Book(title, author, pages, read) {
     }
 }
 
+//Library Array
 let myLibrary = [];
 
-
-
+//Function that adds a book to library.
 function addBookToLibrary(obj) {
     return myLibrary.push(obj);
 }
 
-
-//Need to reset the loop after each books submission (etchasketch project)
+//DOM Manipulation that creates individual books.
 const libraryContainer = document.getElementById('library-container');
-
 function createNewBookContainer() {
   
     let singleBook = document.createElement('div');
@@ -32,25 +31,21 @@ function createNewBookContainer() {
     deletebtn.innerHTML = "Delete book";
     libraryContainer.appendChild(singleBook)
     libraryContainer.appendChild(deletebtn);
-  
+
+    deletebtn.addEventListener('click', function(e) {
+        if (singleBook.id === myLibrary[this.id]) {
+            myLibrary.splice(singleBook.id, 1)
+        }
+        return myLibrary;
+    })
 }
 
-/* document.addEventListener('click', function(e) {
-    if (newBookObj.dataset.id === singleBook.dataset.id) {
-        return e.target.getElementByClass('bookListDiv').remove();
-    }
-}) */
-
-
+//Function that shows the form to create a new book after clicking.
 document.getElementById("new-book-btn").onclick = function() {
 document.getElementById("formElement").style.display = 'block';
 }
 
-//New book creator.
-function addBookToLibrary(obj) {
-    return myLibrary.push(obj);
-}
-
+//Function that submits the form and creates a new book using user input from the forms questions.
 document.addEventListener('submit', function(e) {
     e.preventDefault()
     const newBookForm = e.target
@@ -68,24 +63,5 @@ document.addEventListener('submit', function(e) {
 }) 
 
 
-//Delete book button work
-//We need to figure out how to target the object the delete button is attached to.
-// a possible way to do this could be targeting the object by the array index in myLibrary
-// my thought currently is that we have different buttons on each book, so I want to think in
-// (cont) terms of using each button for it's individual book.
-// create a function that if deletebtn clicked then deletebtn[index] will be deleted?
-
-// Delete the object.onclick() if objects mylibrary index === deletebtn mylibrary index
-
-
-//Pretty obvious error trying to access newBookObj - every click it is running this function
-/* document.addEventListener('click', function(e) {
-    if (newBookObj.dataset.id === singleBook.dataset.id) {
-        return e.target.getElementByClass('bookListDiv').remove();
-    }
-}) */
-
-
 console.log(myLibrary);
 
-//Need to make it so that the loop logs once. (create one book on each submission.
