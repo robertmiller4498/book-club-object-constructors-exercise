@@ -9,11 +9,8 @@ function Book(title, author, pages, read) {
     }
 }
 
-const bookOne = new Book("Barbarian Days", "William Finnegan", 447, false)
-const bookTwo = new Book("Kitchen Confidential", "Anthony Bourdain", 312, true)
-const bookThree = new Book("Manhattan Beach", "Jennifer Egan", 438, false)
-
 let myLibrary = [];
+
 
 
 function addBookToLibrary(obj) {
@@ -28,13 +25,21 @@ function createNewBookContainer() {
   
     let singleBook = document.createElement('div');
     singleBook.classList.add('bookListDiv');
+    singleBook.dataset.id = myLibrary.forEach((singleBook,i)=>singleBook.id = i);
     singleBook.innerHTML = myLibrary.at(-1);
     let deletebtn = document.createElement('button');
-    deletebtn.innerHTML = "Delete book.";
+    deletebtn.classList.add('deleteBookBtn');
+    deletebtn.innerHTML = "Delete book";
     libraryContainer.appendChild(singleBook)
     libraryContainer.appendChild(deletebtn);
   
 }
+
+/* document.addEventListener('click', function(e) {
+    if (newBookObj.dataset.id === singleBook.dataset.id) {
+        return e.target.getElementByClass('bookListDiv').remove();
+    }
+}) */
 
 
 document.getElementById("new-book-btn").onclick = function() {
@@ -54,6 +59,7 @@ document.addEventListener('submit', function(e) {
     const newPages = newBookForm.pages.value
     const newRead = newBookForm.read.value
         const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
+        
     
     const form = document.getElementById('formElement');
     form.reset();
@@ -62,12 +68,24 @@ document.addEventListener('submit', function(e) {
 }) 
 
 
+//Delete book button work
+//We need to figure out how to target the object the delete button is attached to.
+// a possible way to do this could be targeting the object by the array index in myLibrary
+// my thought currently is that we have different buttons on each book, so I want to think in
+// (cont) terms of using each button for it's individual book.
+// create a function that if deletebtn clicked then deletebtn[index] will be deleted?
+
+// Delete the object.onclick() if objects mylibrary index === deletebtn mylibrary index
 
 
-
-
+//Pretty obvious error trying to access newBookObj - every click it is running this function
+/* document.addEventListener('click', function(e) {
+    if (newBookObj.dataset.id === singleBook.dataset.id) {
+        return e.target.getElementByClass('bookListDiv').remove();
+    }
+}) */
 
 
 console.log(myLibrary);
 
-//Need to make it so that the loop logs once. (create one book on each submission.)
+//Need to make it so that the loop logs once. (create one book on each submission.
