@@ -10,7 +10,32 @@
 </head>
 <body>
 
-    <h1>Library</h1>
+    <div class="header">
+        <div class="h1-container">
+            <h1>Library</h1>
+        </div>
+    </div>
+
+    <div id="user-form">
+        <button type="button" id="new-book-btn">Add New Book</button>
+        
+        <form id="formElement" style="display: none;">
+        
+            <label for="title">Book Title:</label><br>
+            <input type="text" id="new-title" name="title"><br>
+            <label for="author">Author:</label><br>
+            <input type="text" id="new-author" name="author"><br>
+            <label for="pages">Pages:</label><br>
+            <input type="text" id="new-pages" name="pages"><br>
+            <label for="read">Have you read this book?:</label><br>
+            <select name="read" id="read">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+        
+            <button type="submit" id="submitForm">Submit New Book</button>
+          </form>
+        </div>
 
 <div id="library-container">
 
@@ -18,27 +43,9 @@
 
 
 <!-- New Book Button -->
-<button type="button" id="new-book-btn">Add New Book</button>
 
 
-<div id="userForm">
-<form id="formElement" style="display: none;">
 
-    <label for="title">Book Title:</label><br>
-    <input type="text" id="new-title" name="title"><br>
-    <label for="author">Author:</label><br>
-    <input type="text" id="new-author" name="author"><br>
-    <label for="pages">Pages:</label><br>
-    <input type="text" id="new-pages" name="pages"><br>
-    <label for="read">Have you read this book?:</label><br>
-    <select name="read" id="read">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-
-    <button type="submit" id="submitForm">Submit New Book</button>
-  </form>
-</div>
 
 
 </body>

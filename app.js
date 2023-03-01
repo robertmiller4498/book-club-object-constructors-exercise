@@ -27,17 +27,31 @@ function createNewBookContainer() {
     singleBook.dataset.id = myLibrary.forEach((singleBook,i)=>singleBook.id = i);
     singleBook.innerHTML = myLibrary.at(-1);
     let deletebtn = document.createElement('button');
-    deletebtn.classList.add('deleteBookBtn');
     deletebtn.innerHTML = "Delete book";
+    /* deletebtndotdataset.id = myLibrarydotindex; */
     libraryContainer.appendChild(singleBook)
-    libraryContainer.appendChild(deletebtn);
+    singleBook.appendChild(deletebtn);
 
-    deletebtn.addEventListener('click', function(e) {
-        if (singleBook.id === myLibrary[this.id]) {
-            myLibrary.splice(singleBook.id, 1)
+
+//Code below deletes all books, need to workshop so that it only deletes the selected book
+//singleBook will need to be incorporated somehow.
+
+//When clicked - we need to on the click, remove
+libraryContainer.addEventListener('click', function removeBook(e) {
+    if (e.target.classList.contains('bookListDiv')) {
+      let eachIndex = e.target.parentElement.rowIndex - 1
+      console.log(eachIndex)
+      e.target.parentElement.remove()
+      //displayBooks(myLibrary[myLibrary.length-1])
+
+      myLibrary.indexOf((singleBook) => {
+        if(myLibrary.length > 0) {
+          myLibrary.splice[eachIndex, 1]
         }
-        return myLibrary;
-    })
+      })
+    }
+    return myLibrary
+  })
 }
 
 //Function that shows the form to create a new book after clicking.
@@ -65,3 +79,19 @@ document.addEventListener('submit', function(e) {
 
 console.log(myLibrary);
 
+/* libraryContainer.addEventListener('click', function removeBook(e) {
+    if (e.target.classList.contains('deleteBookBtn')) {
+      let eachIndex = e.target.parentElement.rowIndex - 1
+      console.log(eachIndex)
+      e.target.parentElement.remove()
+      //displayBooks(myLibrary[myLibrary.length-1])
+
+      myLibrary.indexOf((singleBook) => {
+        if(myLibrary.length > 0) {
+          myLibrary.splice[eachIndex, 1]
+        }
+      })
+    }
+    return myLibrary
+  })
+} */
