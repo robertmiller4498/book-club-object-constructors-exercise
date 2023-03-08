@@ -1,3 +1,5 @@
+/* next project will be centering and positioning each form element in each book. */
+
 body {
     height: 100vh;
     width: auto;
@@ -85,7 +87,7 @@ h1 {
     grid-auto-rows: 100px;
 }
 
-.bookListDiv {
+.singleBook {
     height: 1fr;
     width: auto;
     border-style: solid;

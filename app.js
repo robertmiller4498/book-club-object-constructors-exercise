@@ -1,3 +1,5 @@
+//Left off: getting closer to a working function, still need each click to be individualized
+
 //Constructor function
 function Book(title, author, pages, read) {
     this.title = title
@@ -23,35 +25,22 @@ const libraryContainer = document.getElementById('library-container');
 function createNewBookContainer() {
   
     let singleBook = document.createElement('div');
-    singleBook.classList.add('bookListDiv');
-    singleBook.dataset.id = myLibrary.forEach((singleBook,i)=>singleBook.id = i);
+    singleBook.classList.add('singleBook');
+    singleBook.dataset.id = myLibrary.forEach((Book,i)=>singleBook.id = i);
     singleBook.innerHTML = myLibrary.at(-1);
     let deletebtn = document.createElement('button');
+    deletebtn.classList.add('button-class');
     deletebtn.innerHTML = "Delete book";
-    /* deletebtndotdataset.id = myLibrarydotindex; */
+    deletebtn.dataset.id = singleBook.id;
     libraryContainer.appendChild(singleBook)
     singleBook.appendChild(deletebtn);
 
-
-//Code below deletes all books, need to workshop so that it only deletes the selected book
-//singleBook will need to be incorporated somehow.
-
-//When clicked - we need to on the click, remove
-libraryContainer.addEventListener('click', function removeBook(e) {
-    if (e.target.classList.contains('bookListDiv')) {
-      let eachIndex = e.target.parentElement.rowIndex - 1
-      console.log(eachIndex)
-      e.target.parentElement.remove()
-      //displayBooks(myLibrary[myLibrary.length-1])
-
-      myLibrary.indexOf((singleBook) => {
-        if(myLibrary.length > 0) {
-          myLibrary.splice[eachIndex, 1]
-        }
-      })
-    }
-    return myLibrary
-  })
+    deletebtn.addEventListener('click', function removeBook(i) {
+        myLibrary.splice(i, 1);
+        singleBook.remove();
+	    return myLibrary;
+    })
+    
 }
 
 //Function that shows the form to create a new book after clicking.
@@ -78,20 +67,3 @@ document.addEventListener('submit', function(e) {
 
 
 console.log(myLibrary);
-
-/* libraryContainer.addEventListener('click', function removeBook(e) {
-    if (e.target.classList.contains('deleteBookBtn')) {
-      let eachIndex = e.target.parentElement.rowIndex - 1
-      console.log(eachIndex)
-      e.target.parentElement.remove()
-      //displayBooks(myLibrary[myLibrary.length-1])
-
-      myLibrary.indexOf((singleBook) => {
-        if(myLibrary.length > 0) {
-          myLibrary.splice[eachIndex, 1]
-        }
-      })
-    }
-    return myLibrary
-  })
-} */
