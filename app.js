@@ -18,28 +18,42 @@ let myLibrary = [];
 //Function that adds a book to library.
 function addBookToLibrary(obj) {
     return myLibrary.push(obj);
+    /* return `<div class="book">
+    <p class="title">${item.title}</p>
+    <p class="author">written by ${item.author}.</p>
+    <p class="pages">${item.pages} pages</p>
+    <div class="bookBtns">
+        <button class="isreadBtn btn ${item.isread ? '' : 'notRead'}">${item.isread ? 'Read' : 'Not Read'}</button>
+        <button class="removeBtn btn">Remove</button>
+    </div>
+</div>` */
 }
 
 //DOM Manipulation that creates individual books.
 const libraryContainer = document.getElementById('library-container');
 function createNewBookContainer() {
   
-    let singleBook = document.createElement('div');
+    const singleBook = document.createElement('div');
     singleBook.classList.add('singleBook');
     singleBook.dataset.id = myLibrary.forEach((Book,i)=>singleBook.id = i);
     singleBook.innerHTML = myLibrary.at(-1);
-    let deletebtn = document.createElement('button');
+    const deletebtn = document.createElement('button');
     deletebtn.classList.add('button-class');
     deletebtn.innerHTML = "Delete book";
     deletebtn.dataset.id = singleBook.id;
-    libraryContainer.appendChild(singleBook)
+    libraryContainer.appendChild(singleBook);
     singleBook.appendChild(deletebtn);
-
+    const readStatusbtn = document.createElement('button');
+    readStatusbtn.innerHTML = readCheckResult;
+    singleBook.appendChild(readStatusbtn);
+    singleBook.appendChild(readStatusbtn);
     deletebtn.addEventListener('click', function removeBook(i) {
         myLibrary.splice(i, 1);
         singleBook.remove();
 	    return myLibrary;
     })
+
+    
     
 }
 
@@ -48,22 +62,40 @@ document.getElementById("new-book-btn").onclick = function() {
 document.getElementById("formElement").style.display = 'block';
 }
 
+
 //Function that submits the form and creates a new book using user input from the forms questions.
-document.addEventListener('submit', function(e) {
+document.addEventListener('submit', function newBookFunction(e) {
     e.preventDefault()
     const newBookForm = e.target
     const newTitle = newBookForm.title.value
     const newAuthor = newBookForm.author.value
     const newPages = newBookForm.pages.value
-    const newRead = newBookForm.read.value
+    const newRead = createReadBtn(readCheck);
         const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
         
     
     const form = document.getElementById('formElement');
     form.reset();
 
-     return console.log(createNewBookContainer(addBookToLibrary(newBookObj.bookInfo())));
+      
+
+     return createNewBookContainer(addBookToLibrary(newBookObj.bookInfo()));
+     
 }) 
+
+const readCheck = document.getElementById("#read");
+let readCheckResult = "";
+function createReadBtn(readCheck) {
+     let readBoxChecked = document.querySelector('#read:checked') !== null;
+
+   if (readBoxChecked == true) {
+        return readCheckResult="Read";
+    } else {
+        return readCheckResult="Not yet read.";
+    }
+}
+
+
 
 
 console.log(myLibrary);
