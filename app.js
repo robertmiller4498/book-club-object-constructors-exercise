@@ -32,36 +32,42 @@ function addBookToLibrary(obj) {
 //DOM Manipulation that creates individual books.
 const libraryContainer = document.getElementById('library-container');
 function createNewBookContainer() {
-  
+    
+    //Individual book div singleBook
     const singleBook = document.createElement('div');
     singleBook.classList.add('singleBook');
     singleBook.dataset.id = myLibrary.forEach((Book,i)=>singleBook.id = i);
     singleBook.innerHTML = myLibrary.at(-1);
+    //Delete Button
     const deletebtn = document.createElement('button');
     deletebtn.classList.add('button-class');
     deletebtn.innerHTML = "Delete book";
     deletebtn.dataset.id = singleBook.id;
     libraryContainer.appendChild(singleBook);
     singleBook.appendChild(deletebtn);
+    //Read/Not read button
     const readStatusbtn = document.createElement('button');
     readStatusbtn.innerHTML = readCheckResult;
     singleBook.appendChild(readStatusbtn);
-    singleBook.appendChild(readStatusbtn);
+    readStatusbtn.addEventListener('click', function() {
+        if(readStatusbtn.innerHTML === "Read") {
+            readStatusbtn.innerHTML = "Not yet read.";
+        } else {
+            readStatusbtn.innerHTML = "Read";
+        }
+    })
+    //delete button click function
     deletebtn.addEventListener('click', function removeBook(i) {
         myLibrary.splice(i, 1);
         singleBook.remove();
 	    return myLibrary;
-    })
-
-    
-    
+    }) 
 }
 
 //Function that shows the form to create a new book after clicking.
 document.getElementById("new-book-btn").onclick = function() {
 document.getElementById("formElement").style.display = 'block';
 }
-
 
 //Function that submits the form and creates a new book using user input from the forms questions.
 document.addEventListener('submit', function newBookFunction(e) {
@@ -73,16 +79,14 @@ document.addEventListener('submit', function newBookFunction(e) {
     const newRead = createReadBtn(readCheck);
         const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
         
-    
     const form = document.getElementById('formElement');
     form.reset();
-
-      
 
      return createNewBookContainer(addBookToLibrary(newBookObj.bookInfo()));
      
 }) 
 
+//Function that creates the readStatusbtn by checking for user input on this.read.
 const readCheck = document.getElementById("#read");
 let readCheckResult = "";
 function createReadBtn(readCheck) {
@@ -95,7 +99,4 @@ function createReadBtn(readCheck) {
     }
 }
 
-
-
-
-console.log(myLibrary);
+/* console.log(myLibrary); */
