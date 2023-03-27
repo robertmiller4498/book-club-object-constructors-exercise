@@ -1,5 +1,8 @@
 //Left off: getting closer to a working function, still need each click to be individualized
 
+//Library Array
+let myLibrary = [];
+
 //Constructor function
 function Book(title, author, pages, read) {
     this.title = title
@@ -8,31 +11,32 @@ function Book(title, author, pages, read) {
     this.read = read
 
     this.bookInfo = function() {
-        return [title, author, pages, read];
+
+        let titleContent = document.createElement("p");
+        titleContent.innerHTML = this.title;
+        titleContent.dataset.id = myLibrary.forEach((Book,i)=>titleContent.id = i);
+        const authorContent = document.createElement("p");
+        authorContent.innerHTML = author;
+        authorContent.dataset.id = myLibrary.forEach((Book,i)=>authorContent.id = i);
+        const pagesContent = document.createElement("p");
+        pagesContent.innerHTML = pages;
+        pagesContent.dataset.id = myLibrary.forEach((Book,i)=>pagesContent.id = i);
+        return `<p class="title">${this.title}</p>
+        <p class="author">By: ${this.author}</p>
+        <p class="pages">${this.pages} pages</p>`;
     }
 }
 
-//Library Array
-let myLibrary = [];
+
 
 //Function that adds a book to library.
 function addBookToLibrary(obj) {
     return myLibrary.push(obj);
-    /* return `<div class="book">
-    <p class="title">${item.title}</p>
-    <p class="author">written by ${item.author}.</p>
-    <p class="pages">${item.pages} pages</p>
-    <div class="bookBtns">
-        <button class="isreadBtn btn ${item.isread ? '' : 'notRead'}">${item.isread ? 'Read' : 'Not Read'}</button>
-        <button class="removeBtn btn">Remove</button>
-    </div>
-</div>` */
 }
 
 //DOM Manipulation that creates individual books.
 const libraryContainer = document.getElementById('library-container');
 function createNewBookContainer() {
-    
     //Individual book div singleBook
     const singleBook = document.createElement('div');
     singleBook.classList.add('singleBook');
@@ -40,7 +44,7 @@ function createNewBookContainer() {
     singleBook.innerHTML = myLibrary.at(-1);
     //Delete Button
     const deletebtn = document.createElement('button');
-    deletebtn.classList.add('button-class');
+    deletebtn.classList.add('delete-button-class');
     deletebtn.innerHTML = "Delete book";
     deletebtn.dataset.id = singleBook.id;
     libraryContainer.appendChild(singleBook);
@@ -48,6 +52,7 @@ function createNewBookContainer() {
     //Read/Not read button
     const readStatusbtn = document.createElement('button');
     readStatusbtn.innerHTML = readCheckResult;
+    readStatusbtn.classList.add('read-button-class');
     singleBook.appendChild(readStatusbtn);
     readStatusbtn.addEventListener('click', function() {
         if(readStatusbtn.innerHTML === "Read") {
@@ -78,12 +83,11 @@ document.addEventListener('submit', function newBookFunction(e) {
     const newPages = newBookForm.pages.value
     const newRead = createReadBtn(readCheck);
         const newBookObj = new Book(newTitle, newAuthor, newPages, newRead)
-        
+
     const form = document.getElementById('formElement');
     form.reset();
 
-     return createNewBookContainer(addBookToLibrary(newBookObj.bookInfo()));
-     
+     return createNewBookContainer(addBookToLibrary(newBookObj.bookInfo())); 
 }) 
 
 //Function that creates the readStatusbtn by checking for user input on this.read.
@@ -99,4 +103,9 @@ function createReadBtn(readCheck) {
     }
 }
 
-/* console.log(myLibrary); */
+console.log(myLibrary);
+
+//Need to hook up each Book element to it's html counterpart.(ex. title => p class = "title")
+//With that, hide the newRead variable from displaying.
+//Repair CSS and work on responsiveness.
+//Extra: Create a pencil button to edit author or title on each singleBook.
