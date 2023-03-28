@@ -34,7 +34,7 @@ function addBookToLibrary(obj) {
     return myLibrary.push(obj);
 }
 
-//DOM Manipulation that creates individual books.
+//Libaray Container & DOM Manipulation that creates individual books.
 const libraryContainer = document.getElementById('library-container');
 function createNewBookContainer() {
     //Individual book div singleBook
@@ -104,8 +104,3 @@ function createReadBtn(readCheck) {
 }
 
 console.log(myLibrary);
-
-//Need to hook up each Book element to it's html counterpart.(ex. title => p class = "title")
-//With that, hide the newRead variable from displaying.
-//Repair CSS and work on responsiveness.
-//Extra: Create a pencil button to edit author or title on each singleBook.

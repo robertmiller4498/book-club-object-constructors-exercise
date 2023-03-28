@@ -1,10 +1,13 @@
 /* next project will be centering and positioning each form element in each book. */
-
+* {
+    box-sizing: border-box;
+  }
+  
 body {
     height: 100vh;
     width: auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 4% repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-template-areas: 
     "header header header header"
@@ -27,26 +30,27 @@ body {
 }
 
 .h1-container {
-    height: 8em;
-    width: 16em;
+    height: 7em;
+    width: 15em;
     border-style: solid;
     border-color: #a5f3fc;
-    color: #a5f3fc;
-    font-family: 'Mukta', sans-serif;
     border-width: 4px;
-    justify-items: center;
-    align-self: center;
 }
 
 h1 {
     display: flex;
     justify-content: center;
+    font-family: 'Mukta', sans-serif;
+    font-size: 3vw;
+    color: #a5f3fc;
+    justify-self: center;
+    align-self: center;
 }
 
-/* sidebar/form */
+/* sidebar & form */
 #user-form{
     grid-area: sidebar;
-    height: auto;
+    height: fit-content;
     width: 10rem;
     background-color: #0c4a6e;
     border-style: solid;
@@ -60,13 +64,12 @@ h1 {
     "new-book-btn"
     "formElement";
     justify-self: flex-start;
-   
 }
 
 #formElement {
     grid-area: formElement;
     height: 100%;
-    width: 1fr;
+    width: auto;
     justify-items: center;
     align-self: flex-start;
     display: grid;
@@ -88,7 +91,6 @@ h1 {
 }
 
 /* Library display */
-/* Need to make container/divs display better as a hybrid grid. */
 #library-container {
     display: grid;
     grid-area: library;
@@ -112,7 +114,7 @@ h1 {
     "title title" 
     "author author"
     "pages pages"
-    " read-button-class delete-button-class";
+    "read-button-class delete-button-class";
 }
 
 .title {
@@ -121,7 +123,7 @@ h1 {
     width: auto;
     justify-self: center;
     font-family: 'Playfair Display', serif;
-    font-size: large;
+    font-size: 2vw;
     font-weight: bolder;
     flex-wrap: wrap;
 }
@@ -132,7 +134,7 @@ h1 {
     width: auto;
     justify-self: center;
     font-family: 'Playfair Display', serif;
-    font-size: medium;
+    font-size: 1.4vw;
     font-weight: 200;
 }
 
@@ -142,7 +144,7 @@ h1 {
     width: auto;
     justify-self: center;
     font-family: 'Playfair Display', serif;
-    
+    font-size: 1vw;
 }
 
 .read-button-class {
@@ -153,8 +155,305 @@ h1 {
 }
 .delete-button-class {
     grid-area: delete-button-class;
-    
 }
 
+/* RWD Media Queries */
+@media only screen and (max-width: 375px) {
+    body {
+        height: 100vh;
+        width: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 10% 1fr 1fr;
+        grid-template-areas: 
+        "header"
+        "sidebar"
+        "library";
+    }
 
+    .h1-container {
+        width: 40%;
+        height: auto;
+    }
+
+    #user-form {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .singleBook {
+        width: auto;
+        height: 200%;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "title" 
+        "author"
+        "pages"
+        "read-button-class"
+        "delete-button-class";
+    }
+
+    .title {
+        font-size: 4vw;
+    }
+
+    .author {
+        font-size: 3vw;
+    }
+
+    .pages {
+        font-size: 2.5vw;
+    }
+
+    .read-button-class {
+        width: 100%;
+        height: auto;
+    }
+
+    .delete-button-class {
+        width: 100%;
+        height: auto;
+    }
+
+    #library-container {
+        row-gap: 8em;
+        column-gap: 1.5em;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (min-width: 375px) {
+    #library-container {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 8em;
+        column-gap: 2em;
+    }
+
+    body {
+        height: 100vh;
+        width: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 15% 1fr 1fr;
+        grid-template-areas: 
+        "header"
+        "sidebar"
+        "library";
+    }
+
+    .h1-container {
+        width: 40%;
+        height: auto;
+    }
+
+    #user-form {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .singleBook {
+        width: auto;
+        height: 200%;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "title" 
+        "author"
+        "pages"
+        "read-button-class"
+        "delete-button-class";
+    }
+
+    .title {
+        font-size: 4vw;
+    }
+
+    .author {
+        font-size: 3vw;
+    }
+
+    .pages {
+        font-size: 2.5vw;
+    }
+
+    .read-button-class {
+        width: 100%;
+        height: auto;
+    }
+
+    .delete-button-class {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    body {
+        grid-template-rows: 15% 1fr 1fr;
+    }
+
+    #library-container {
+        row-gap: 12em;
+    }
+
+    .singleBook {
+        height: 250%;
+        width: auto;
+    }
+}
+/* Main screen query. */
+@media only screen and (min-width: 600px) {
+    body {
+        height: 100vh;
+        width: auto;
+        display: grid;
+        grid-template-columns: 20% repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-areas: 
+        "header header header header"
+        "sidebar library library library"
+        "sidebar library library library"
+        "sidebar library library library";
+    }
+    
+    /* header */
+    .header {
+        grid-area: header;
+        height: 100%;
+        width: auto;
+        background-color: #0c4a6e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-style: solid;
+        border-color: #a5f3fc;
+    }
+    
+    .h1-container {
+        height: 7em;
+        width: 15em;
+        border-style: solid;
+        border-color: #a5f3fc;
+        border-width: 4px;
+    }
+    
+    h1 {
+        display: flex;
+        justify-content: center;
+        font-family: 'Mukta', sans-serif;
+        font-size: 3vw;
+        color: #a5f3fc;
+        justify-self: center;
+        align-self: center;
+    }
+    
+    /* sidebar & form */
+    #user-form{
+        grid-area: sidebar;
+        height: fit-content;
+        width: 10rem;
+        background-color: #0c4a6e;
+        border-style: solid;
+        border-width: 4px;
+        border-color: #a5f3fc;
+        color: #a5f3fc;
+        font-family: 'Mukta', sans-serif;
+        display: grid;
+        grid-template-rows: 10%, 90%;
+        grid-template-areas: 
+        "new-book-btn"
+        "formElement";
+        justify-self: flex-start;
+    }
+    
+    #formElement {
+        grid-area: formElement;
+        height: 100%;
+        width: auto;
+        justify-items: center;
+        align-self: flex-start;
+        display: grid;
+        grid-template-areas:
+        "title title"
+        "author author"
+        "page-count ."
+        "read ."
+        "deletebtn deletebtn";
+        flex-wrap: wrap;
+    }
+    
+    #new-book-btn {
+        grid-area: new-book-btn;
+        height: 2rem;
+        width: auto;
+        margin: 10px;
+    
+    }
+    
+    /* Library display */
+    #library-container {
+        display: grid;
+        grid-area: library;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 100px;
+        row-gap: 12em;
+    }
+    
+    .singleBook {
+        height: 40vh;
+        width: 20vw;
+        border-style: solid;
+        border-width: 3px;
+        border-color: black;
+        background-color: #a7f3d0;
+        border-left: 10px solid #064e3b;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-areas: 
+        "title title" 
+        "author author"
+        "pages pages"
+        "read-button-class delete-button-class";
+    }
+    
+    .title {
+        grid-area: title;
+        height: 100%;
+        width: auto;
+        justify-self: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2vw;
+        font-weight: bolder;
+        flex-wrap: wrap;
+    }
+    
+    .author {
+        grid-area: author;
+        height: 100%;
+        width: auto;
+        justify-self: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4vw;
+        font-weight: 200;
+    }
+    
+    .pages {
+        grid-area: pages;
+        height: 100%;
+        width: auto;
+        justify-self: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 1vw;
+    }
+    
+    .read-button-class {
+        grid-area: read-button-class;
+        height: 100%;
+        width: auto;
+    
+    }
+    .delete-button-class {
+        grid-area: delete-button-class;
+    }
+}
 
